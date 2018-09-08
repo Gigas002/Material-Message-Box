@@ -8,7 +8,7 @@ namespace BespokeFusion
     /// </summary>
     public partial class MessageBoxWindow: IDisposable
     {
-        public MessageBoxResult Result { get; set; }
+        public MessageBoxResult Result { get; private set; }
 
         public MessageBoxWindow()
         {
@@ -26,10 +26,7 @@ namespace BespokeFusion
             Close();
         }
 
-        public void Dispose()
-        {
-            Close();
-        }
+        public void Dispose() => Close();
 
         private void BtnCopyMessage_OnClick(object sender, RoutedEventArgs e)
         {
@@ -37,9 +34,9 @@ namespace BespokeFusion
             {
                Clipboard.SetText(TxtMessage.Text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                string error = ex.Message;
+                // ignored
             }
         }
     }
