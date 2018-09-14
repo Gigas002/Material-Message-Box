@@ -34,7 +34,7 @@ namespace BespokeFusion
             {
                Clipboard.SetText(TxtMessage.Text);
             }
-            catch (Exception)
+            catch (ArgumentNullException)
             {
                 // ignored
             }

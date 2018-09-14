@@ -4,28 +4,52 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:MaterialMessageBoxDemo"
     xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    mc:Ignorable="d" 
-    TitleCaps="False"
-    WindowState="Maximized"
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen"
+    TitleCharacterCasing="Normal"
     TitleForeground="{DynamicResource MaterialDesignPaper}"
     WindowTitleBrush="{DynamicResource AccentColorBrush}"
     BorderBrush="{DynamicResource AccentColorBrush}"
     Foreground="{DynamicResource MaterialDesignPaper}"
-    Title="Material Design Message Box" Height="350" Width="525">
-    
+    Title="Material Design Message Box"
+    MaxHeight="500"
+    MaxWidth="525">
     <Grid>
-        <StackPanel>
-            <TextBlock Foreground="{DynamicResource AccentColorBrush}" FontSize="20px" Margin="0,12" HorizontalAlignment="Center">Material Design Message Box Demo</TextBlock>
-            <Rectangle Height="1" Fill="AliceBlue"></Rectangle>
-            <Button Content="Show Simple Message Box" Click="ShowSimpleMessageBox_OnClick" Foreground="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Center" Margin="12"/>
-            <Button Content="Show Error Message Message Box" Click="ShowErrorMessageBox_OnClick" Foreground="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Center" Margin="12"/>
-            <Button Content="Show Custom Styled Message Box" Click="ShowCustomMessageBox_OnClick" HorizontalAlignment="Center" Foreground="{DynamicResource MaterialDesignPaper}" Margin="12"/>
-            <Button Content="Show Message Box with Cancel Button" Click="ShowMessageBoxWithCancelButton_OnClick" Foreground="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Center" Margin="12"/>
-            <Button Content="Show Simple RTL Message Box" Click="ShowSimpleRTLMessageBox_OnClick" Foreground="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Center" Margin="12"/>
-            <TextBlock Name="TxtResult" HorizontalAlignment="Center" Margin="12" Foreground="{DynamicResource IdealForegroundColorBrush}"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontSize="20" Margin="0 12" HorizontalAlignment="Center" Text="Material Design Message Box Demo"
+                Foreground="{DynamicResource AccentColorBrush}"/>
+            <Button Grid.Row="1" HorizontalAlignment="Center" Margin="12" Content="Show Simple Message Box"
+                    Click="ShowSimpleMessageBox_OnClick" Foreground="{DynamicResource MaterialDesignPaper}"/>
+            <Button Grid.Row="2" HorizontalAlignment="Center" Margin="12" Content="Show Error Message Message Box"
+                    Click="ShowErrorMessageBox_OnClick" Foreground="{DynamicResource MaterialDesignPaper}"/>
+            <Button Grid.Row="3" HorizontalAlignment="Center" Margin="12" Content="Show Custom Styled Message Box"
+                    Click="ShowCustomMessageBox_OnClick" Foreground="{DynamicResource MaterialDesignPaper}"/>
+            <Button Grid.Row="4" HorizontalAlignment="Center" Margin="12" Content="Show Message Box with Cancel Button"
+                    Click="ShowMessageBoxWithCancelButton_OnClick" Foreground="{DynamicResource MaterialDesignPaper}"/>
+            <Button Grid.Row="5" HorizontalAlignment="Center" Margin="12" Content="Show Simple RTL Message Box"
+                    Click="ShowSimpleRTLMessageBox_OnClick" Foreground="{DynamicResource MaterialDesignPaper}"/>
+            <TextBlock Grid.Row="6" Margin="12" x:Name="TxtResult" HorizontalAlignment="Center"
+                       Foreground="{DynamicResource IdealForegroundColorBrush}"/>
+        </Grid>
     </Grid>
 </metro:MetroWindow>
