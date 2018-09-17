@@ -2,8 +2,8 @@
 
 A WPF Message Box implementing material design.
 
-Original release link.
-[![Release](https://img.shields.io/github/release/denpalrius/Material-Message-Box.svg)](https://github.com/denpalrius/Material-Message-Box/releases/latest)
+Latest release link.
+[![Release](https://img.shields.io/github/release/Gigas002/Material-Message-Box.svg)](https://github.com/Gigas002/Material-Message-Box/releases/latest)
 
 :arrow_forward: [Download original package from Nuget](https://www.nuget.org/packages/MaterialMessageBox/)
 
