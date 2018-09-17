@@ -1,10 +1,11 @@
 # Material Message Box
 
-A WPF Message Box implementing material design
+A WPF Message Box implementing material design.
 
+Original release link.
 [![Release](https://img.shields.io/github/release/denpalrius/Material-Message-Box.svg)](https://github.com/denpalrius/Material-Message-Box/releases/latest)
 
-:arrow_forward: [Download from Nuget](https://www.nuget.org/packages/MaterialMessageBox/)
+:arrow_forward: [Download original package from Nuget](https://www.nuget.org/packages/MaterialMessageBox/)
 
 :arrow_forward: Install from Package manager Console
 > Install-Package MaterialMessageBox
@@ -16,7 +17,7 @@ The message box has the following custom features:
 
 :white_check_mark: Material Theme design
 
-:white_check_mark: Custom styles for border window, message foreground and background, title foreground and background, border, etc
+:white_check_mark: Custom styles for border window, message foreground and background, etc
 
 :white_check_mark: Button to copy message box details to clipboard
 
@@ -31,7 +32,7 @@ The message box has the following custom features:
 > Creating a simple message box
 
 ```c#
-MaterialMessageBox.Show("Your cool message here", "The awesome message title");
+MaterialMessageBox.Show("Your cool message here");
 ```
 ![Simple Message](./MaterialMessageBoxDemo/Screenshots/Simple-Message-Box.png?raw=true "Creating a simple message box")
 
@@ -40,36 +41,33 @@ MaterialMessageBox.Show("Your cool message here", "The awesome message title");
 ```c#            
 MaterialMessageBox.ShowError(@"This is an error message");
 ```
-![Error Message](https://raw.github.com/denpalrius/Material-Message-Box/master/MaterialMessageBoxDemo/Screenshots/Error-Message-Box.png)
+![Error Message](https://raw.github.com/Gigas002/Material-Message-Box/master/MaterialMessageBoxDemo/Screenshots/Error-Message-Box.png)
 
 
 > Capturing Message Box Results
 
 ```c#    
-var result = MaterialMessageBox.ShowWithCancel($"This is a simple message with a cancel button. You can listen to the return value", "Message Box Title");
+var result = MaterialMessageBox.ShowWithCancel($"This is a simple message with a cancel button. You can listen to the return value");
 ```
-![Capturing Message Box Results](https://raw.github.com/denpalrius/Material-Message-Box/master/MaterialMessageBoxDemo/Screenshots/Message-Box-With-Cancel-Button.png)
+![Capturing Message Box Results](https://raw.github.com/Gigas002/Material-Message-Box/master/MaterialMessageBoxDemo/Screenshots/Message-Box-With-Cancel-Button.png)
 
 
 > Styling a message box
 
 ```c#    
-var msg = new CustomMaterialMessageBox
-{
-    TxtMessage = { Text = "Do you like white wine?", Foreground = Brushes.White },
-    TxtTitle = { Text = "This is too cool", Foreground = Brushes.White },
-    BtnOk = { Content = "Yes" },
-    BtnCancel = { Content = "Noooo" },
-    MainContentControl = { Background = Brushes.MediumVioletRed },
-    TitleBackgroundPanel = { Background = Brushes.BlueViolet },
-
-    BorderBrush = Brushes.BlueViolet
+CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+ {
+    MessageTextBlock = { Text = "Do you like white wine?", Foreground = Brushes.White },
+    OkButton = { Content = "Yes" },
+    CancelButton = { Content = "Noooo" },
+    MainGrid = { Background = Brushes.Red },
+    BorderBrush = Brushes.BlueViolet,
+    BorderThickness = new Thickness(4, 4, 4, 4)
 };
-
 msg.Show();
 var results = msg.Result;
 ```
-![Capturing Message Box Results](https://raw.github.com/denpalrius/Material-Message-Box/master/MaterialMessageBoxDemo/Screenshots/Styled-Message-Box.png)
+![Capturing Message Box Results](https://raw.github.com/Gigas002/Material-Message-Box/master/MaterialMessageBoxDemo/Screenshots/Styled-Message-Box.png)
 
 
 ## :sparkle: Contributing to this project
@@ -83,7 +81,7 @@ If you've improved Material Message Box and think that other people would enjoy 
 ## :sparkle: Toolkits used
 I have implemented these awesome toolkits while creating this control. Hands up to these guys who have made the most beautiful controls for WPF. They have crossed the oceans on foot!
 
-- [mahApps.Metro](https://github.com/MahApps/MahApps.Metro) A toolkit for creating Metro/Modern UI styled WPF apps
+- [mahApps.Metro](https://github.com/MahApps/MahApps.Metro) A toolkit for creating Metro/Modern UI styled WPF apps (used only in demo and original library by https://github.com/Denpalrius)
 - [MaterialDesignInXamlToolkit](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit) Google Material Design in XAML & WPF, for C# & VB.Net
 
 ----------
