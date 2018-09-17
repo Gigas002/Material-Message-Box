@@ -6,7 +6,7 @@ namespace BespokeFusion
     /// <summary>
     /// Interaction logic for MessageBoxWindow.xaml
     /// </summary>
-    public partial class MessageBoxWindow: IDisposable
+    public partial class MessageBoxWindow : IDisposable
     {
         public MessageBoxResult Result { get; private set; }
 
@@ -15,12 +15,12 @@ namespace BespokeFusion
             InitializeComponent();
             Result = MessageBoxResult.Cancel;
         }
-        private void BtnOk_OnClick(object sender, RoutedEventArgs e)
+        private void OkButton_OnClick(object sender, RoutedEventArgs e)
         {
             Result = MessageBoxResult.OK;
             Close();
         }
-        private void BtnCancel_OnClick(object sender, RoutedEventArgs e)
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             Result = MessageBoxResult.Cancel;
             Close();
@@ -28,11 +28,11 @@ namespace BespokeFusion
 
         public void Dispose() => Close();
 
-        private void BtnCopyMessage_OnClick(object sender, RoutedEventArgs e)
+        private void CopyMessageButton_OnClick(object sender, RoutedEventArgs e)
         {
             try
             {
-               Clipboard.SetText(TxtMessage.Text);
+                Clipboard.SetText(MessageTextBlock.Text);
             }
             catch (ArgumentNullException)
             {
