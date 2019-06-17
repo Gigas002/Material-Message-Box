@@ -7,130 +7,90 @@ namespace BespokeFusion
     public static class MaterialMessageBox
     {
         /// <summary>
-        /// Displays a message box with OK button
+        /// Shows usual message box.
         /// </summary>
-        /// <param name="message">The message to display</param>
-        /// <param name="isRtl">(Optional) If true the MessageBox FlowDirection will be RightToLeft</param>
-        public static void Show(string message, bool isRtl = false)
-        {
-            using (MessageBoxWindow msg = new MessageBoxWindow())
-            {
-                msg.MessageTextBlock.Text = message;
-                msg.CancelButton.Visibility = Visibility.Collapsed;
-                if (isRtl)
-                    msg.FlowDirection = FlowDirection.RightToLeft;
-                msg.OkButton.Focus();
-                msg.ShowDialog();
-            }
-        }
-
-        /// <summary>
-        /// Displays an error message box
-        /// </summary>
-        /// <param name="errorMessage">The error error message to display</param>
-        /// <param name="isRtl">(Optional) If true the MessageBox FlowDirection will be RightToLeft</param>
-        public static void ShowError(string errorMessage, bool isRtl = false)
+        /// <param name="message">The message to display.</param>
+        /// <param name="isCancel">Is cancel button visible?</param>
+        /// <param name="isRightToLeft">(Optional) Is <see cref="FlowDirection"/>=<see cref="FlowDirection.RightToLeft"/>?</param>
+        /// <returns>Message box result. <see cref="MessageBoxResult.Cancel"/> if <see cref="Exception"/> is thrown.</returns>
+        public static MessageBoxResult Show(string message, bool isCancel, bool isRightToLeft = false)
         {
             try
             {
-                using (MessageBoxWindow msg = new MessageBoxWindow())
+                using (MessageBoxWindow messageBoxWindow = new MessageBoxWindow())
                 {
-                    msg.MessageTextBlock.Text = errorMessage;
-                    msg.BorderBrush = Brushes.Red;
-                    msg.BorderThickness = new Thickness(2, 2, 2, 2);
-                    msg.CancelButton.Visibility = Visibility.Collapsed;
-                    if (isRtl)
-                        msg.FlowDirection = FlowDirection.RightToLeft;
-                    msg.OkButton.Focus();
-                    msg.ShowDialog();
+                    messageBoxWindow.MessageTextBlock.Text = message;
+                    messageBoxWindow.CancelButton.Visibility = isCancel ? Visibility.Visible : Visibility.Collapsed;
+                    messageBoxWindow.FlowDirection = isRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+                    messageBoxWindow.OkButton.Focus();
+                    messageBoxWindow.ShowDialog();
+                    return messageBoxWindow.Result == MessageBoxResult.OK ? MessageBoxResult.OK : MessageBoxResult.Cancel;
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show(errorMessage);
-            }
-        }
-
-        /// <summary>
-        /// Displays a warning message box
-        /// </summary>
-        /// <param name="warningMessage">The warning message to display</param>
-        public static void ShowWarning(string warningMessage)
-        {
-            try
-            {
-                using (MessageBoxWindow msg = new MessageBoxWindow())
-                {
-                    msg.MessageTextBlock.Text = warningMessage;
-                    msg.BorderBrush = Brushes.Orange;
-                    msg.BorderThickness = new Thickness(2, 2, 2, 2);
-                    msg.CancelButton.Visibility = Visibility.Collapsed;
-                    msg.OkButton.Focus();
-                    msg.ShowDialog();
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(warningMessage);
-            }
-        }
-
-        /// <summary>
-        /// Displays a message box with a cancel button
-        /// </summary>
-        /// <param name="message">The message to display</param>
-        /// <param name="isRtl">(Optional) If true the MessageBox FlowDirection will be RightToLeft</param>
-        /// <returns>Message box Result OK or CANCEL</returns>
-        public static MessageBoxResult ShowWithCancel(string message, bool isRtl = false)
-        {
-            try
-            {
-                using (MessageBoxWindow msg = new MessageBoxWindow())
-                {
-                    msg.MessageTextBlock.Text = message;
-                    if (isRtl)
-                        msg.FlowDirection = FlowDirection.RightToLeft;
-                    msg.OkButton.Focus();
-                    msg.ShowDialog();
-                    return msg.Result == MessageBoxResult.OK ? MessageBoxResult.OK : MessageBoxResult.Cancel;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(message);
                 return MessageBoxResult.Cancel;
             }
         }
 
         /// <summary>
-        /// Displays a message box with a cancel button
+        /// Shows an error message box.
         /// </summary>
-        /// <param name="message">The message to display</param>
-        /// <param name="isError">If the message is an error</param>
-        /// <param name="isRtl">(Optional) If true the MessageBox FlowDirection will be RightToLeft</param>
-        /// <returns>Message box Result OK or CANCEL</returns>
-        public static MessageBoxResult ShowWithCancel(string message, bool isError, bool isRtl = false)
+        /// <param name="errorMessage">The error error message to display.</param>
+        /// <param name="isCancel">Is cancel button visible?</param>
+        /// <param name="isRightToLeft">(Optional) Is <see cref="FlowDirection"/>=<see cref="FlowDirection.RightToLeft"/>?</param>
+        /// <returns>Message box result. <see cref="MessageBoxResult.Cancel"/> if <see cref="Exception"/> is thrown.</returns>
+        public static MessageBoxResult ShowError(string errorMessage, bool isCancel, bool isRightToLeft = false)
         {
             try
             {
-                using (MessageBoxWindow msg = new MessageBoxWindow())
+                using (MessageBoxWindow messageBoxWindow = new MessageBoxWindow())
                 {
-                    msg.MessageTextBlock.Text = message;
-                    msg.BorderBrush = isError
-                        ? Brushes.Red
-                        : new SolidColorBrush(Color.FromRgb(3, 169, 244));
-                    if (isRtl) msg.FlowDirection = FlowDirection.RightToLeft;
-                    msg.OkButton.Focus();
-                    msg.ShowDialog();
-                    return msg.Result == MessageBoxResult.OK ? MessageBoxResult.OK : MessageBoxResult.Cancel;
+                    messageBoxWindow.BorderBrush = Brushes.Red;
+                    messageBoxWindow.BorderThickness = new Thickness(2, 2, 2, 2);
+
+                    messageBoxWindow.MessageTextBlock.Text = errorMessage;
+                    messageBoxWindow.CancelButton.Visibility = isCancel ? Visibility.Visible : Visibility.Collapsed;
+                    messageBoxWindow.FlowDirection = isRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+                    messageBoxWindow.OkButton.Focus();
+                    messageBoxWindow.ShowDialog();
+                    return messageBoxWindow.Result == MessageBoxResult.OK ? MessageBoxResult.OK : MessageBoxResult.Cancel;
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show(message);
                 return MessageBoxResult.Cancel;
             }
         }
 
+        /// <summary>
+        /// Shows a warning message box.
+        /// </summary>
+        /// <param name="warningMessage">The warning message to display.</param>
+        /// <param name="isCancel">Is cancel button visible?</param>
+        /// <param name="isRightToLeft">(Optional) Is <see cref="FlowDirection"/>=<see cref="FlowDirection.RightToLeft"/>?</param>
+        /// <returns>Message box result. <see cref="MessageBoxResult.Cancel"/> if <see cref="Exception"/> is thrown.</returns>
+        public static MessageBoxResult ShowWarning(string warningMessage, bool isCancel, bool isRightToLeft = false)
+        {
+            try
+            {
+                using (MessageBoxWindow messageBoxWindow = new MessageBoxWindow())
+                {
+                    messageBoxWindow.BorderBrush = Brushes.Orange;
+                    messageBoxWindow.BorderThickness = new Thickness(2, 2, 2, 2);
+
+                    messageBoxWindow.MessageTextBlock.Text = warningMessage;
+                    messageBoxWindow.CancelButton.Visibility = isCancel ? Visibility.Visible : Visibility.Collapsed;
+                    messageBoxWindow.FlowDirection = isRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+                    messageBoxWindow.OkButton.Focus();
+                    messageBoxWindow.ShowDialog();
+                    return messageBoxWindow.Result == MessageBoxResult.OK ? MessageBoxResult.OK : MessageBoxResult.Cancel;
+                }
+            }
+            catch (Exception)
+            {
+                return MessageBoxResult.Cancel;
+            }
+        }
     }
 }

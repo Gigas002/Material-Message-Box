@@ -14,15 +14,15 @@ namespace MaterialMessageBoxDemo
 
         private void ShowSimpleMessageBox_OnClick(object sender, RoutedEventArgs e) =>
             MaterialMessageBox.Show("This is a simple message\n\nIs\'nt it cool\n.\n.\n"
-                                  + "You could even scroll!!!\nd\no\no\no\no\no\nw\nn");
+                                  + "You could even scroll!!!\nd\no\no\no\no\no\nw\nn", false);
 
         private void ShowErrorMessageBox_OnClick(object sender, RoutedEventArgs e) =>
-            MaterialMessageBox.ShowError("This is an error message");
+            MaterialMessageBox.ShowError("This is an error message", false);
 
         private void ShowMessageBoxWithCancelButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MaterialMessageBox.ShowWithCancel("This is a simple message with a cancel button."
-                                                                      + " You can listen to the return value");
+            MessageBoxResult result = MaterialMessageBox.Show("This is a simple message with a cancel button."
+                                                                      + " You can listen to the return value", true);
             TxtResult.Text = $"Message Box Result is: {result}";
         }
 
@@ -30,7 +30,7 @@ namespace MaterialMessageBoxDemo
         {
             //You can create this as a static class and reuse it all over your app
             //Don't forget to specify the BorderThickness if needed
-            CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+            CustomMaterialMessageBox customMaterialMessageBox = new CustomMaterialMessageBox
             {
                 MessageTextBlock = { Text = "Do you like white wine?", Foreground = Brushes.White },
                 OkButton = { Content = "Yes" },
@@ -39,14 +39,13 @@ namespace MaterialMessageBoxDemo
                 BorderBrush = Brushes.BlueViolet,
                 BorderThickness = new Thickness(4, 4, 4, 4)
             };
-            msg.Show();
-            MessageBoxResult results = msg.Result;
-            TxtResult.Text = $"Message Box Result is: {results}";
+            customMaterialMessageBox.Show();
+            TxtResult.Text = $"Message Box Result is: {customMaterialMessageBox.Result}";
         }
 
         private void ShowSimpleRTLMessageBox_OnClick(object sender, RoutedEventArgs e) =>
             MaterialMessageBox.Show(
                 $"This is a simple message{Environment.NewLine}هذه رسالة بسيطة{Environment.NewLine}{Environment.NewLine}"
-              + "Is'nt it cool\n.\n.\nYou could even scroll!!!\nd\no\no\no\no\no\nw\nn", true);
+              + "Is'nt it cool\n.\n.\nYou could even scroll!!!\nd\no\no\no\no\no\nw\nn", false, true);
     }
 }
